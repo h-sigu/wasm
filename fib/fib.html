@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<style>
+body {background:wheat;}
+</style>
+<script src="args.js"></script>
+<script src="sprintf.js"></script>
+<script src="fib.js"></script>
+</head>
+<body>
+<h2 id='output'></h2>
+<script>
+var n = $_GET('n');
+var js_wrapped_fib = Module.cwrap("fib", "number", ["number"]);
+Module.onRuntimeInitialized = function() {
+  document.getElementById("output").innerHTML = sprintf("<center>fib ( $ ) = $</center>",n, js_wrapped_fib(n).toLocaleString());
+};
+</script>
+</body>
+</html>
